@@ -22,6 +22,7 @@ model Memory {
   userId    String
   coverUrl  String
   content   String
+  dateEvent DateTime
   isPublic  Boolean  @default(false)
   createdAt DateTime @default(now())
 
