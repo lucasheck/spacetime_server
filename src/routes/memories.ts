@@ -1,8 +1,9 @@
 import { prisma } from "../lib/prisma";
 import { FastifyInstance } from "fastify";
-import { date, z } from "zod";
+import { z } from "zod";
 
 export async function memoriesRoutes(app: FastifyInstance) {
+	/* PRE HANDLER */
 	app.addHook("preHandler", async (request) => {
 		await request.jwtVerify();
 	});
@@ -75,8 +76,10 @@ export async function memoriesRoutes(app: FastifyInstance) {
 
 		return memory;
 	});
+
 	/* UPDATE */
 	app.put("/memories/:id", async (request, reply) => {
+		console.log(request.user);
 		const paramsSchema = z.object({
 			id: z.string().uuid(),
 		});
